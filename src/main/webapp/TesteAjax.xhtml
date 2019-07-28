@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Teste Ajax</title>
+</h:head>
+<h:body>
+	<h:form id="frm">
+
+		<h:inputText value="#{meuBean.nome}">
+			<f:ajax event="keyup" render="idOla IdContador" listener="#{meuBean.transformar}" />
+		</h:inputText>
+		<br />
+		
+		<br />
+		<h:outputText id="IdContador" value="#{meuBean.quantidadeCaracteres} caracteres digitados" />		
+		<br />
+		<h:outputText value="Olá #{meuBean.nome}" id="idOla" />
+	</h:form>
+</h:body>
+</html>

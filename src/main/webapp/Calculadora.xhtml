@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Calculadora</title>
+</h:head>
+<h:body>
+	<h:form id="frm">
+		<h:messages />
+		<h1>Conversão de valores - f:convertNumber</h1>
+		
+		<h:outputLabel value="Seu nome: " for="seuNome"/>
+		<h:inputText size="12" value="#{calculadoraBean.nome}" id="seuNome" 
+			label="Seu nome" required="true">
+			<f:validateLength minimum="3" maximum="15" />
+		</h:inputText>
+		<br/><br/>		
+		
+		<h:inputText size="12" value="#{calculadoraBean.valorA}" required="true" label="Valor A">
+			<f:convertNumber minFractionDigits="2" maxFractionDigits="2" locale="pt_BR" />
+		</h:inputText>	
+		+
+		<h:inputText size="12" value="#{calculadoraBean.valorB}" required="true" label="Valor B">
+			<f:convertNumber minFractionDigits="2" maxFractionDigits="2" locale="pt_BR" />
+		</h:inputText>	
+		=
+		<h:outputText value="#{calculadoraBean.resultado}">
+			<f:convertNumber type="currency" locale="pt_BR" />
+		</h:outputText>	
+		<br /><br />
+
+		<h:commandButton value="Somar" action="#{calculadoraBean.somar}" />
+	</h:form>
+</h:body>
+</html>

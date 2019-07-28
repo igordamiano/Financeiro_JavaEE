@@ -1,0 +1,264 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:composite="http://xmlns.jcp.org/jsf/composite">
+
+<h:head>
+	<title>Formulário</title>
+	<script>
+		function alteraValorCampo() {
+			var campo = document.getElementById('meuForm:meuCampo');
+			campo.value = 'Valor alterado';
+		}
+	</script>
+
+	<style>
+		.campo {
+			background-color: #ccc;
+			color: white
+		}
+	</style>
+
+
+</h:head>
+
+<h:body>
+	<h:form id="meuForm">
+		<h:inputText id="meuCampo" />
+		<input type="button" value="Alterar Valor" onclick="alteraValorCampo();" />
+
+		<br /> <br />
+		<!-- Campo não é renderizado -->
+		<h:inputText id="campoRendered" rendered="false" />
+		<h:inputText styleClass="campo" style="border-color: blue; border-style: dotted"/>
+		<br /> <br />
+		<h:inputText onclick="this.value = '';"
+			onchange="this.value = this.value.toUpperCase();"
+			onmouseover="this.style.backgroundColor = 'yellow';"
+			onmouseout="this.style.backgroundColor = 'white';"/>
+		<br /> <br />
+		<h:outputLabel value="Senha "/>	
+		<h:inputSecret value=""/>	
+	
+		<br /> <br />
+		<h:outputLabel value="Text Area "/>
+		<h:inputTextarea value="" cols="40" rows="3"/>
+		<br /> <br />
+		<!-- Texto simples -->
+		<h:outputText value="outputText" /> 
+		<br />
+		<!-- Texto parametrizado: value="Oi {0}! Existem {1} tarefas pendentes." -->
+		<h:outputFormat value="outputFormat"/>
+		<br />
+		<!-- rotular campos de seus formulários -->
+		<h:outputLabel value="outputLabel"/>
+		
+		<br /><br />
+		<h:graphicImage library="imagens" name="java.jpg" width="150" height="150"/>
+		
+		<br /><br />
+		<!-- <h:selectOneMenu> -->
+		<h:outputLabel value="h:selectOneMenu: " for="timeFutebol" />
+		<h:selectOneMenu value="#{cadastroTorcedorBean.timesFavoritos}"
+		id="timeFutebol">
+			<f:selectItem itemValue="São Paulo" />
+			<f:selectItem itemValue="Flamengo" />
+			<f:selectItem itemValue="Palmeiras" />
+			<f:selectItem itemValue="Santos" />
+			<f:selectItem itemValue="Vasco" />
+			<f:selectItem itemValue="Outro" />
+		</h:selectOneMenu>
+
+		<br /><br />
+		<!-- <h:selectManyMenu> -->
+		<h:outputLabel value="h:selectManyMenu: " for="timeFutebol1"/>
+		<h:selectManyMenu value="#{cadastroTorcedorBean.timesFavoritos}"
+		id="timeFutebol1" style="width:150px; height:120px;">
+			<f:selectItem itemValue="São Paulo" />
+			<f:selectItem itemValue="Flamengo" />
+			<f:selectItem itemValue="Palmeiras" />
+			<f:selectItem itemValue="Santos" />
+			<f:selectItem itemValue="Vasco" />
+			<f:selectItem itemValue="Outro" />
+		</h:selectManyMenu>
+		
+		<br /><br />
+		<!-- <h:selectOneListbox> -->
+		<h:outputLabel value="h:selectOneListbox: " for="timeFutebol2" />
+		<h:selectOneListbox value="#{cadastroTorcedorBean.timeFavorito}"
+		id="timeFutebol2" size="4">
+			<f:selectItem itemValue="São Paulo" />
+			<f:selectItem itemValue="Flamengo" />
+			<f:selectItem itemValue="Palmeiras" />
+			<f:selectItem itemValue="Santos" />
+			<f:selectItem itemValue="Vasco" />
+			<f:selectItem itemValue="Outro" />
+		</h:selectOneListbox>
+		
+		<br /><br />
+		<!-- <h:selectManyListbox> -->
+		<h:outputLabel value="h:selectManyListbox: " for="timeFutebol3" />
+		<h:selectManyListbox value="#{cadastroTorcedorBean.timesFavoritos}"
+		id="timeFutebol3" size="4">
+			<f:selectItem itemValue="São Paulo" />
+			<f:selectItem itemValue="Flamengo" />
+			<f:selectItem itemValue="Palmeiras" />
+			<f:selectItem itemValue="Santos" />
+			<f:selectItem itemValue="Vasco" />
+			<f:selectItem itemValue="Outro" />
+		</h:selectManyListbox>
+
+		<br /><br />
+		<!-- <<h:selectOneRadio>> -->
+		<h:selectOneRadio id="sexo">
+			<f:selectItem itemValue="M" itemLabel="Masculino" />
+			<f:selectItem itemValue="F" itemLabel="Feminino" />
+		</h:selectOneRadio>
+		
+		<br /><br />
+		<!-- pageDirection -->
+		<h:selectOneRadio id="sexo1" layout="pageDirection">
+			<f:selectItem itemValue="M" itemLabel="Masculino" />
+			<f:selectItem itemValue="F" itemLabel="Feminino" />
+		</h:selectOneRadio>
+
+		<br /><br />
+		<!-- h:selectBooleanCheckbox -->
+		<h:selectBooleanCheckbox id="aceite" value="#{cadastroUsuarioBean.termoAceito}"/>
+		<h:outputLabel value="Li e aceito os termos e condições" for="aceite"/>
+
+		<br /><br />
+		<!-- h:selectBooleanCheckbox -->
+		<h:selectManyCheckbox id="assuntos" value="#{cadastroUsuarioBean.assuntosInteresse}">
+			<f:selectItem itemValue="1" itemLabel="Java" />
+			<f:selectItem itemValue="3" itemLabel="Python" />		
+			<f:selectItem itemValue="4" itemLabel="Ruby" />
+			<f:selectItem itemValue="4" itemLabel="PHP" />
+			<f:selectItem itemValue="5" itemLabel="Métodos ágeis" />
+		</h:selectManyCheckbox>
+
+		<br /><br />
+		<!-- pageDirection -->
+		<h:selectManyCheckbox id="assuntos1" layout="pageDirection" 
+		value="#{cadastroUsuarioBean.assuntosInteresse}">
+			<f:selectItem itemValue="1" itemLabel="Java" />
+			<f:selectItem itemValue="3" itemLabel="Python" />
+			<f:selectItem itemValue="4" itemLabel="Ruby" />
+			<f:selectItem itemValue="4" itemLabel="PHP" />
+			<f:selectItem itemValue="5" itemLabel="Métodos ágeis" />
+		</h:selectManyCheckbox>
+
+		<br /><br />
+		<!-- selectOneListbox f:selectItems -->
+		<h:outputLabel value="selectOneListbox f:selectItems"/>
+		<h:selectOneListbox size="5" value="#{minhaCidadeBean.cidadeNatal}">
+			<f:selectItems value="#{minhaCidadeBean.todasCidades}" />
+		</h:selectOneListbox>
+
+
+		<br /><br />
+		<!-- h:commandButton -->
+		<h:commandButton id="cadastrar" value="Cadastrar" type="submit"
+			action="#{cadastroBean.cadastrar}"/><br />
+		<h:commandButton id="limpar" value="Limpar" type="reset"/><br />
+			<br />
+		<h:commandButton id="voltar" value="Voltar"
+			image="/resources/imagens/voltar.png" action="home"
+			style="width:150px; height:120px;"/>	
+
+		<br /><br />
+		<!-- h:commandLink -->
+		<h:commandLink id="cadastrar1" value="Cadastrar"
+			action="#{cadastroBean.cadastrar}"/>
+			<br />
+		<h:commandLink id="voltar1" action="home">
+			<h:graphicImage value="/resources/imagens/voltar.png" />
+			<h:outputText value="Voltar123"/>
+		</h:commandLink>
+
+		<br /><br />
+		<!-- outputLink simplesmente um link-->
+		<h:outputLink value="http://www.algaworks.com" target="_blank">
+			<h:graphicImage library="imagens" name="java.jpg" />
+		</h:outputLink>
+
+
+		<!-- Este componente facilita a construção de URLs com parâmetros (querystring). Os
+		parâmetros são especificados usando a tag <f:param>. 
+		Ao clicar no link gerado pelo código acima, somos redirecionados para o endereço
+		http://www.algaworks.com/?codigo=931&grupo=Java
+		-->
+
+		<h:outputLink value="http://www.algaworks.com" target="_blank">
+			<f:param name="codigo" value="931"/>
+			<f:param name="grupo" value="Java"/>
+			<h:graphicImage library="imagens" name="logo.png" />
+		</h:outputLink>
+
+		<br /><br />
+		<!-- h:panelGrid -->
+
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Dados para cadastro" />
+			</f:facet>
+			
+			<h:outputText value="Nome:" />
+			<h:inputText size="20" />
+			
+			<h:outputText value="E-mail:" />
+			<h:inputText size="40" />
+			
+			<h:outputText value="Senha:" />
+			<h:inputSecret size="20" />
+			
+			<h:outputText />
+			<h:commandButton value="Cadastrar" />
+		</h:panelGrid>
+
+		<br /><br />
+		<!-- h:panelGroup> 
+		em situações onde é desejado a inclusão de vários componentes em
+		um lugar que apenas um é permitido	-->
+		
+		<h:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="Dados para cadastro" />
+			</f:facet>
+			
+		<h:outputText value="Nome:" />
+		<h:inputText size="20" />
+
+		<h:outputText value="E-mail:" />
+		<h:panelGroup>
+			<h:inputText size="40" />
+			<h:commandButton value="Validar" />
+		</h:panelGroup>
+
+		<h:outputText value="Senha:" />
+		<h:inputSecret size="20" />
+
+		<h:outputText />
+		<h:commandButton value="Cadastrar" />
+		</h:panelGrid>		
+
+
+		<br /><br />
+
+
+
+
+
+
+
+
+
+
+	</h:form>
+
+
+
+</h:body>
+
+</html>
